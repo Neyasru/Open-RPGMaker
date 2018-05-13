@@ -3,11 +3,9 @@
 #include "Scene.h"
 #include "InputManager.h"
 
-
 class Engine;
 class EntityManager;
 class Entity;
-class MapManager;
 
 class GameScene : public Scene {
 
@@ -34,8 +32,6 @@ private:
 
 	float currentTime;
 	EntityManager* entityManager;
-	MapManager* mapManager;
-	
 	InputManager* input;
 	Entity* player;
 };

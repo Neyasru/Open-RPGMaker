@@ -52,20 +52,26 @@ std::vector<std::string> getTableKeys(luabridge::lua_State* L, const std::string
 	
 	lua_gettostack(L, name);
 	luabridge::lua_pcall(L, 1, 1, 0);
-	
-	std::vector<std::string> keys;
+	std::string type = luaL_typename(L, 1);
+	if (type == "table") {
+		std::vector<std::string> keys;
 
-	lua_pushnil(L);
+		lua_pushnil(L);
 
-	while (lua_next(L, -2)) { // get values one by one
-		if (lua_type(L, -1) == LUA_TSTRING) { // check if key is a string
-			keys.push_back(luabridge::lua_tostring(L, -1));
+		while (lua_next(L, -2)) { // get values one by one
+			if (lua_type(L, -1) == LUA_TSTRING) { // check if key is a string
+				keys.push_back(luabridge::lua_tostring(L, -1));
+			}
+			luabridge::lua_pop(L, 1);
 		}
-		luabridge::lua_pop(L, 1);
+
+		lua_settop(L, 0); // remove s table from stack 
+		return keys;
 	}
-	
-    lua_settop(L, 0); // remove s table from stack 
-    return keys;
+	else {
+		lua_settop(L, 0); // remove s table from stack 
+		return std::vector<std::string>();
+	}
 }
 
 void lua_gettostack(luabridge::lua_State* L, const std::string& variableName) {

@@ -1,0 +1,42 @@
+#ifndef _COLLIDERCOMPONENTS_H_
+#define _COLLIDERCOMPONENTS_H_
+
+#include "Components.h"
+#include "../Engine.h"
+
+class ColliderComponent : public Component {
+public:
+	SDL_Rect collider;
+	std::string tag;
+
+	SDL_Rect srcR, destR;
+
+	TransformComponent* transform;
+
+	ColliderComponent(std::string t)
+	{
+		tag = t;
+	}
+
+	ColliderComponent(std::string t, int xpos, int ypos, int size)
+	{
+		tag = t;
+		collider.x = xpos;
+		collider.y = ypos;
+		collider.h = collider.w = size;
+	}
+
+	void init() override {
+
+
+	}
+
+	void update() override {
+	}
+
+	void draw() override {
+
+	}
+};
+
+#endif

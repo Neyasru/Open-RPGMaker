@@ -1,6 +1,7 @@
 #include <cstdarg>
 #include "Components.h"
 
+
 void Entity::addGroup(Group mGroup)
 {
 	groupBitset[mGroup] = true;
@@ -31,8 +32,12 @@ Entity& EntityManager::addEntity(luabridge::lua_State* L, const std::string& typ
 			luabridge::LuaRef inputTable = entityTable["InputComponent"];
 			addComponent<InputComponent>(e, inputTable);
 		}
+		else if (componentName == "MapComponent") {
+			luabridge::LuaRef inputTable = entityTable["MapComponent"];
+			addComponent<MapComponent>(e, inputTable);
+		}
 
-		//std::cout << "Added " << componentName << " to " << type << std::endl;
+		std::cout << "Added " << componentName << " to " << type << std::endl;
 	}
 
 	e->init();

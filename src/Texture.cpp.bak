@@ -17,7 +17,7 @@ SDL_Texture* Texture::get(){
 
 void Texture::Draw(SDL_Texture * tex, SDL_Rect src, SDL_Rect dest, SDL_RendererFlip flip)
 {
-	SDL_RenderCopyEx(Engine::instance().renderer, tex, &src, &dest, 0, NULL, flip);
+	SDL_RenderCopyEx(Engine::instance().renderer, tex, &src, &dest, NULL, NULL, flip);
 }
 
 Texture::Texture(const char* file){

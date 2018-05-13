@@ -6,5 +6,8 @@
 #include "GraphicsComponent.h"
 #include "InputComponent.h"
 #include "NpcComponent.h"
+#include "TileComponent.h"
+#include "MapComponent.h"
+
 
 #endif

@@ -39,6 +39,9 @@ public:
 		auto rowsRef = componentTable["rows"];
 		auto columnsRef = componentTable["columns"];
 
+		auto rowRef = componentTable["row"];
+		auto columnRef = componentTable["column"];
+
 		if (imageIDRef.isString()) {
 			imageID = imageIDRef.cast<std::string>();
 		}
@@ -49,15 +52,29 @@ public:
 		if (rowsRef.isNumber()) {
 			rows = rowsRef.cast<int>();
 		}
-		else {
-			std::cout << "Error, GraphicsComponent.numAnim is not a number!" << std::endl;
+		else if(!rowsRef.isNil()){
+			std::cout << "Error, GraphicsComponent.rows is not a number!" << std::endl;
 		}
 
 		if (columnsRef.isNumber()) {
 			columns = columnsRef.cast<int>();
 		}
-		else {
-			std::cout << "Error, GraphicsComponent.framesPerAnimationRef is not a number!" << std::endl;
+		else if(!columnsRef.isNil()) {
+			std::cout << "Error, GraphicsComponent.columns is not a number!" << std::endl;
+		}
+
+		if (rowRef.isNumber()) {
+			rowS = rowRef.cast<int>();
+		}
+		else if (!rowRef.isNil()) {
+			std::cout << "Error, GraphicsComponent.row is not a number!" << std::endl;
+		}
+
+		if (columnRef.isNumber()) {
+			colS = columnRef.cast<int>();
+		}
+		else if (!columnRef.isNil()) {
+			std::cout << "Error, GraphicsComponent.column is not a number!" << std::endl;
 		}
 	}
 

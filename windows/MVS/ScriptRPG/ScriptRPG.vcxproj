@@ -132,6 +132,7 @@
     <ClCompile Include="..\..\..\src\InputManager.cpp" />
     <ClCompile Include="..\..\..\src\LuaHelperFunctions.cpp" />
     <ClCompile Include="..\..\..\src\main.cpp" />
+    <ClCompile Include="..\..\..\src\Map.cpp" />
     <ClCompile Include="..\..\..\src\MenuScene.cpp" />
     <ClCompile Include="..\..\..\src\Scene.cpp" />
     <ClCompile Include="..\..\..\src\Texture.cpp" />
@@ -140,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\src\AssetsManager.h" />
     <ClInclude Include="..\..\..\src\ECS\Animation.h" />
+    <ClInclude Include="..\..\..\src\ECS\ColliderComponent.h" />
     <ClInclude Include="..\..\..\src\ECS\Components.h" />
     <ClInclude Include="..\..\..\src\ECS\ECS.h" />
     <ClInclude Include="..\..\..\src\ECS\GraphicsComponent.h" />
@@ -154,6 +156,7 @@
     <ClInclude Include="..\..\..\src\GameScene.h" />
     <ClInclude Include="..\..\..\src\InputManager.h" />
     <ClInclude Include="..\..\..\src\LuaHelperFunctions.h" />
+    <ClInclude Include="..\..\..\src\Map.h" />
     <ClInclude Include="..\..\..\src\MenuScene.h" />
     <ClInclude Include="..\..\..\src\Scene.h" />
     <ClInclude Include="..\..\..\src\Texture.h" />

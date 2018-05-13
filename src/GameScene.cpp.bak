@@ -3,7 +3,6 @@
 
 #include "GameScene.h"
 #include "Engine.h"
-#include "Map.h"
 #include "ECS/Components.h"
 
 using namespace std;
@@ -13,8 +12,6 @@ GameScene::GameScene(Engine* engine) : Scene(engine) {
 	this->input = &(engine->input);
 
 	entityManager = new EntityManager();
-	mapManager = new MapManager(entityManager);
-
 }
 
 void GameScene::restart(void) {
@@ -24,32 +21,23 @@ void GameScene::restart(void) {
 	luabridge::lua_State* L = luabridge::luaL_newstate();
 	luabridge::luaL_openlibs(L);
 
+	loadScript(L, "assets/scripts/player.lua");
+
 	loadLuaFunctions(L);
 	loadGetKeysFunction(L);
-	
-	if(loadScript(L, "assets/scripts/player.lua")){
-		player = &(entityManager->addEntity(L, "player"));
-		
-		luabridge::LuaRef loadAnimations = getGlobal(L, "loadAnimations");
-		loadAnimations(LuaEntityHandle(player));
 
-		player->addGroup(groupPlayers);
-	}
-	
-	if(loadScript(L, "assets/tiles/tiles.lua")){
-		mapManager->loadTileReferences(L);
-	}
+	player = &(entityManager->addEntity(L, "player"));
+	player->addGroup(groupPlayers);
 
-	if(loadScript(L, "assets/maps/maps.lua")){
-		mapManager->addMaps(L);
-	}
+	luabridge::LuaRef loadAnimations = getGlobal(L, "loadAnimations");
+	loadAnimations(LuaEntityHandle(player));
 
-/*
+
 	loadScript(L, "assets/scripts/map.lua");
 	loadGetKeysFunction(L);
-	auto m = entityManager->addEntity(L, "map");
-	m.get<MapComponent>()->LoadMap();*/
-
+	auto m = &(entityManager->addEntity(L, "map"));
+	m->get<MapComponent>()->LoadMap();
+	m->addGroup(groupMap);
 
 	//lua_close(L);
 }
@@ -57,8 +45,8 @@ void GameScene::restart(void) {
 void GameScene::update(void) {
 	int w, h;
 	SDL_GetWindowSize(Engine::instance().getWindow(), &w, &h);
-	Engine::instance().camera.x = static_cast<int>(player->get<TransformComponent>()->position.x*player->get<TransformComponent>()->width*0.5 - w / 2 + player->get<TransformComponent>()->width / 2);
-	Engine::instance().camera.y = static_cast<int>(player->get<TransformComponent>()->position.y*player->get<TransformComponent>()->heigth*0.5 - h / 2 + player->get<TransformComponent>()->heigth / 2);
+	Engine::instance().camera.x = static_cast<int>(player->get<TransformComponent>()->position.x*player->get<TransformComponent>()->width*0.5 - w/2 + player->get<TransformComponent>()->width/2);
+	Engine::instance().camera.y = static_cast<int>(player->get<TransformComponent>()->position.y*player->get<TransformComponent>()->heigth*0.5 - h/2 + player->get<TransformComponent>()->heigth/2);
 	entityManager->update();
 	
 	if (Engine::instance().input.getPressedKey('l')) {
@@ -68,7 +56,10 @@ void GameScene::update(void) {
 }
 
 void GameScene::render(void)  {
-	mapManager->drawLayer(0);
+	for (auto& t : entityManager->getGroup(groupMap))
+	{
+		t->draw();
+	}
 
 	for (auto& p : entityManager->getGroup(groupPlayers))
 	{
