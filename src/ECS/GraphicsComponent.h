@@ -101,14 +101,16 @@ public:
 	}
 	
 	void update() override {
-		if (numAnims != 0)
-		{
+		if (numAnims != 0) {
 			srcRect.x = srcRect.w * (static_cast<int>((SDL_GetTicks() / speed) % frames) + colS);
+		}
+		else {
+			srcRect.x = srcRect.w*colS;
 		}
 		srcRect.y = srcRect.h*rowS;
 	
-		destRect.x = static_cast<int>(transform->position.x*transform->width*0.5 - Engine::instance().camera.x);
-		destRect.y = static_cast<int>(transform->position.y*transform->heigth*0.5 - Engine::instance().camera.y);
+		destRect.x = static_cast<int>(transform->position.x*transform->width*transform->scale - Engine::instance().camera.x);
+		destRect.y = static_cast<int>(transform->position.y*transform->heigth*transform->scale - Engine::instance().camera.y);
 		destRect.w = transform->width*transform->scale;
 		destRect.h = transform->heigth*transform->scale;
 	}

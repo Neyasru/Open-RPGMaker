@@ -262,16 +262,92 @@ sea = {
         imageID = "img_tileset";
 		row = 10;
 		column = 3;
+		numAnim = 0;
     },
 	TransformComponent = {
-		w = 64;
-		h = 64;
+		w = 32;
+		h = 32;
 		x = 0;
 		y = 0;
 		scale = 1;
 	},
 	ColliderComponent = {
-		collisionType = "Solid";
+		type = "Solid";
+	},
+}
+
+grass_to_sea_ul = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 10;
+		column = 0;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "Solid";
+	},
+}
+
+grass_to_sea_u = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 10;
+		column = 1;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "Solid";
+	},
+}
+
+grass_to_sea_ur = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 10;
+		column = 2;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "Solid";
+	},
+}
+
+grass_to_sea_l = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 11;
+		column = 0;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+	},
+	ColliderComponent = {
+		type = "Solid";
 	},
 }
 
@@ -280,15 +356,415 @@ grass = {
         imageID = "img_tileset";
 		row = 11;
 		column = 1;
+		numAnim = 0;
     },
 	TransformComponent = {
-		w = 64;
-		h = 64;
+		w = 32;
+		h = 32;
 		x = 0;
 		y = 0;
 		scale = 1;
 	},
 	ColliderComponent = {
-		collision = false
+		type = "None";
+	},
+}
+
+grass_to_sea_r = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 11;
+		column = 2;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "Solid";
+	},
+}
+
+grass_to_sea_dl = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 12;
+		column = 0;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "Solid";
+	},
+}
+
+grass_to_sea_d = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 12;
+		column = 1;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "Solid";
+	},
+}
+
+grass_to_sea_dr = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 12;
+		column = 2;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "Solid";
+	},
+}
+
+sea_cliff_l = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 13;
+		column = 2;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "Solid";
+	},
+}
+
+sea_cliff_center = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 13;
+		column = 2;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "Solid";
+	},
+}
+
+sea_cliff_r = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 13;
+		column = 2;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "Solid";
+	},
+}
+
+rock4_to_grass_ul = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 5;
+		column = 3;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+rock4_to_grass_up = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 5;
+		column = 4;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+rock4_to_grass_ur = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 5;
+		column = 5;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+rock4_to_grass_l = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 6;
+		column = 3;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+rock4 = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 6;
+		column = 4;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+rock4_to_grass_r = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 6;
+		column = 5;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+rock4_to_grass_dl = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 7;
+		column = 3;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+rock4_to_grass_d = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 7;
+		column = 4;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+rock4_to_grass_dr = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 7;
+		column = 5;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+grass_to_rock4_ul = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 8;
+		column = 3;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+grass_to_rock4_ur = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 8;
+		column = 4;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+grass_to_rock4_dl = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 9;
+		column = 3;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+grass_to_rock4_dr = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 9;
+		column = 4;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+rock4_grassed = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 9;
+		column = 5;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
 	},
 }

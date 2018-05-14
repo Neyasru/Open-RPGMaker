@@ -57,8 +57,8 @@ void GameScene::restart(void) {
 void GameScene::update(void) {
 	int w, h;
 	SDL_GetWindowSize(Engine::instance().getWindow(), &w, &h);
-	Engine::instance().camera.x = static_cast<int>(player->get<TransformComponent>()->position.x*player->get<TransformComponent>()->width*0.5 - w / 2 + player->get<TransformComponent>()->width / 2);
-	Engine::instance().camera.y = static_cast<int>(player->get<TransformComponent>()->position.y*player->get<TransformComponent>()->heigth*0.5 - h / 2 + player->get<TransformComponent>()->heigth / 2);
+	Engine::instance().camera.x = static_cast<int>(player->get<TransformComponent>()->position.x*player->get<TransformComponent>()->width*player->get<TransformComponent>()->scale-w / 2 + player->get<TransformComponent>()->width / 2);
+	Engine::instance().camera.y = static_cast<int>(player->get<TransformComponent>()->position.y*player->get<TransformComponent>()->heigth*player->get<TransformComponent>()->scale-h / 2 + player->get<TransformComponent>()->heigth / 2);
 	entityManager->update();
 	
 	if (Engine::instance().input.getPressedKey('l')) {
