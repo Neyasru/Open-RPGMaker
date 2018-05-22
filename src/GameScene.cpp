@@ -69,11 +69,13 @@ void GameScene::update(void) {
 
 void GameScene::render(void)  {
 	mapManager->drawLayer(0);
-
+	mapManager->drawLayer(1);
 	for (auto& p : entityManager->getGroup(groupPlayers))
 	{
 		p->draw();
 	}
+
+
 }
 
 GameScene::~GameScene() {

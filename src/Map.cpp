@@ -66,31 +66,36 @@ void Map::loadMap(std::string file){
 		if (loadScript(L, "assets/tiles/tiles.lua")) {
 			for(int z = 0; z < layers; z++){
 				Layer aux_Layer;
-				for (int y = 0; y < sizeY-1; y++){
+				for (int y = 0; y < sizeY; y++){
 					std::vector<Entity*> aux_Row;
 					for (int x = 0; x < sizeX-1; x++){
 						std::string input;
 						getline(mapFile, input, ',');
 						int val = std::stoi(input);
-						
-						Entity *aux_ent = &(mapManager->getEntityManager()->addEntity(L, mapManager->getTileName(val)));
-						if (aux_ent->get<TransformComponent>() != NULL) {
-							aux_ent->get<TransformComponent>()->position.x = x;
-							aux_ent->get<TransformComponent>()->position.y = y;
-							aux_ent->get<TransformComponent>()->scale = mapScale;
-							aux_ent->init();
-							aux_ent->update();
+						if (val == -1){
+							Entity *aux_ent = &(mapManager->getEntityManager()->addEntity(L, mapManager->getTileName(val)));
+							aux_Row.push_back(aux_ent);
 						}
 						else {
-							std::cout << mapManager->getTileName(val) << " tile not loaded!" << endl;
+							Entity *aux_ent = &(mapManager->getEntityManager()->addEntity(L, mapManager->getTileName(val)));
+							if (aux_ent->get<TransformComponent>() != NULL) {
+								aux_ent->get<TransformComponent>()->position.x = x;
+								aux_ent->get<TransformComponent>()->position.y = y;
+								aux_ent->get<TransformComponent>()->scale = mapScale;
+								aux_ent->init();
+								aux_ent->update();
+							}
+							else {
+								std::cout << mapManager->getTileName(val) << " tile not loaded!" << endl;
+							}
+							aux_Row.push_back(aux_ent);
+							//tile_map[x][y][z] = &(mapManager->getEntityManager()->addEntity(L, mapManager->getTileName(val))); //crear una funcio dins de map manager que s'encarregui de aixo
+
+							//map[y][x] = val;
+							//srcX = val% tileSetSize;
+							//srcY = val/ tileSetSize;
+							//addTile(srcX, srcY, x*scaledSize, y*scaledSize);
 						}
-						aux_Row.push_back(aux_ent);
-						//tile_map[x][y][z] = &(mapManager->getEntityManager()->addEntity(L, mapManager->getTileName(val))); //crear una funcio dins de map manager que s'encarregui de aixo
-					
-						//map[y][x] = val;
-						//srcX = val% tileSetSize;
-						//srcY = val/ tileSetSize;
-						//addTile(srcX, srcY, x*scaledSize, y*scaledSize);
 					}
 					aux_Layer.push_back(aux_Row);
 				}

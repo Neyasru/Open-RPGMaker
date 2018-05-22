@@ -43,7 +43,7 @@ void AssetsManager::loadImages() {
 		}
 	}
 
-	luabridge::lua_close(L);
+	//luabridge::lua_close(L);
 }
 
 void AssetsManager::loadMusics() {
@@ -71,7 +71,7 @@ void AssetsManager::loadMusics() {
 		}
 	}
 
-	luabridge::lua_close(L);
+	//luabridge::lua_close(L);
 }
 
 void AssetsManager::loadSounds() {
@@ -99,7 +99,7 @@ void AssetsManager::loadSounds() {
 		}
 	}
 
-	luabridge::lua_close(L);
+	//luabridge::lua_close(L);
 }
 
 void AssetsManager::loadFonts() {
@@ -127,7 +127,7 @@ void AssetsManager::loadFonts() {
 		}
 	}
 
-	luabridge::lua_close(L);
+	//luabridge::lua_close(L);
 }
 
 Texture* AssetsManager::getTexture(string code) {

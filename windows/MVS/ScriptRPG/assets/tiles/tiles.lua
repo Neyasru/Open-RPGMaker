@@ -61,7 +61,7 @@ tiles = {
 	gravel1_grassed = 59;
 	log1_corner_ul = 60;
 	log1_center_up = 61;
-	log1_center2_up = 62;
+	log1_corner_ur = 62;
 	cutting_wood_1 = 63;
 	grass_to_rock1_dl = 64;
 	grass_to_rock1_dr = 65;
@@ -76,8 +76,8 @@ tiles = {
 	grass_to_gravel1_dr = 74;
 	grass_to_gravel1_dot = 75;
 	log1_corner_r = 76;
-	log1_center_middle = 77;
-	log1_center2_middle = 78;
+	log1_center_m = 77;
+	log1_corner_l = 78;
 	cutting_wood_2 = 79;
 	rock4_to_grass_ul = 80;
 	rock4_to_grass_up = 81;
@@ -92,8 +92,8 @@ tiles = {
 	gravel2_to_grass_up = 90;
 	gravel2_to_grass_ur = 91;
 	log1_corner2_r = 92;
-	log1_bottom_middle = 93;
-	log1_bottom2_middle = 94;
+	log1_center2_m = 93;
+	log1_corner2_l = 94;
 	log1_bottom3_middle = 95;
 	rock4_to_grass_l = 96;
 	rock4 = 97;
@@ -108,7 +108,7 @@ tiles = {
 	gravel2 = 106;
 	gravel2_to_grass_r = 107;
 	log1_corner_dl = 108;
-	log1_center_bottom = 109;
+	log1_center_b = 109;
 	log1_corner_dr = 110;
 	log1_center_doublefeet = 111;
 	rock4_to_grass_dl = 112;
@@ -753,7 +753,788 @@ grass_to_rock4_dr = {
 rock4_grassed = {
     GraphicsComponent = {
         imageID = "img_tileset";
+		row = 8;
+		column = 5;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+grass_to_rock4_dot = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
 		row = 9;
+		column = 5;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+
+log1_corner_ul = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 3;
+		column = 12;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+log1_center_up = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 3;
+		column = 13;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+log1_corner_ur = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 3;
+		column = 14;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+log1_corner_r = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 4;
+		column = 12;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+log1_center_m = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 4;
+		column = 13;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+log1_corner_l = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 4;
+		column = 14;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+log1_corner2_r = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 5;
+		column = 12;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+log1_center2_m = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 5;
+		column = 13;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+log1_corner2_l = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 5;
+		column = 14;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+log1_corner_dl = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 6;
+		column = 12;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+log1_center_b = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 6;
+		column = 13;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+log1_corner_dr = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 6;
+		column = 14;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+group_sacks_ul = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 8;
+		column = 9;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+group_sacks_ur = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 8;
+		column = 10;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+group_sacks_dl = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 9;
+		column = 9;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+group_sacks_dr = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 9;
+		column = 10;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+top_box3 = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 7;
+		column = 14;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+top_box4 = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 7;
+		column = 15;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+top_box5 = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 9;
+		column = 12;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+top_box6 = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 9;
+		column = 13;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+bottom_box4 = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 8;
+		column = 15;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+wheat_sack = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 10;
+		column = 8;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+
+flower_in_pot = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 9;
+		column = 11;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+left_facing_boat_ul = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 14;
+		column = 0;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+left_facing_boat_ucl = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 14;
+		column = 1;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+left_facing_boat_ucr = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 14;
+		column = 2;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+left_facing_boat_ur = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 14;
+		column = 3;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+left_facing_boat_dl = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 15;
+		column = 0;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+left_facing_boat_dcl = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 15;
+		column = 1;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+left_facing_boat_dcr = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 15;
+		column = 2;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+left_facing_boat_dr = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 15;
+		column = 3;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+big_bridge_ul = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 11;
+		column = 3;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+big_bridge_u = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 11;
+		column = 4;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+big_bridge_ur = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 11;
+		column = 5;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+big_bridge_l = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 12;
+		column = 3;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+big_bridge_center = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 12;
+		column = 4;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+big_bridge_r = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 12;
+		column = 5;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+big_bridge_dl = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 13;
+		column = 3;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+big_bridge_d = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 13;
+		column = 4;
+		numAnim = 0;
+    },
+	TransformComponent = {
+		w = 32;
+		h = 32;
+		x = 0;
+		y = 0;
+		scale = 1;
+	},
+	ColliderComponent = {
+		type = "None";
+	},
+}
+
+big_bridge_dr = {
+    GraphicsComponent = {
+        imageID = "img_tileset";
+		row = 13;
 		column = 5;
 		numAnim = 0;
     },

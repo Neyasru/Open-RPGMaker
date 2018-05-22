@@ -12,12 +12,12 @@ player = {
         phrase = "Soc un player super molon"
     },
 	TransformComponent = {
-		x = 90;
-		y = 106;
+		x = 25;
+		y = 23;
 		w = 64;
 		h = 64;
 		scale = 1;
-		speed = 0.2;
+		speed = 0.1;
 	},
 }
 
