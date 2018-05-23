@@ -53,6 +53,15 @@ public class EditorForm extends javax.swing.JFrame {
         saveExitButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
         imageLabel = new javax.swing.JLabel();
+        tilePropertiesPane = new javax.swing.JPanel();
+        idLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        sizeTileLabel = new javax.swing.JLabel();
+        colliderLabel = new javax.swing.JLabel();
+        animationLabel = new javax.swing.JLabel();
+        heightLabel = new javax.swing.JLabel();
+        widthLabel = new javax.swing.JLabel();
+        inputCLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,6 +87,72 @@ public class EditorForm extends javax.swing.JFrame {
         imageLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         imageLabel.setFocusable(false);
 
+        idLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        idLabel.setText("ID");
+
+        nameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nameLabel.setText("Name");
+
+        sizeTileLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sizeTileLabel.setText("Size of Tile");
+
+        colliderLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        colliderLabel.setText("Collider");
+
+        animationLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        animationLabel.setText("Animation Number");
+
+        heightLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        heightLabel.setText("Height");
+
+        widthLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        widthLabel.setText("Width");
+
+        inputCLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inputCLabel.setText("Input Component");
+
+        javax.swing.GroupLayout tilePropertiesPaneLayout = new javax.swing.GroupLayout(tilePropertiesPane);
+        tilePropertiesPane.setLayout(tilePropertiesPaneLayout);
+        tilePropertiesPaneLayout.setHorizontalGroup(
+            tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tilePropertiesPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idLabel)
+                    .addComponent(nameLabel)
+                    .addComponent(colliderLabel)
+                    .addComponent(animationLabel)
+                    .addComponent(sizeTileLabel)
+                    .addGroup(tilePropertiesPaneLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(heightLabel)
+                            .addComponent(widthLabel)))
+                    .addComponent(inputCLabel))
+                .addContainerGap(119, Short.MAX_VALUE))
+        );
+        tilePropertiesPaneLayout.setVerticalGroup(
+            tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tilePropertiesPaneLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(idLabel)
+                .addGap(37, 37, 37)
+                .addComponent(nameLabel)
+                .addGap(35, 35, 35)
+                .addComponent(sizeTileLabel)
+                .addGap(13, 13, 13)
+                .addComponent(heightLabel)
+                .addGap(18, 18, 18)
+                .addComponent(widthLabel)
+                .addGap(18, 18, 18)
+                .addComponent(colliderLabel)
+                .addGap(34, 34, 34)
+                .addComponent(animationLabel)
+                .addGap(31, 31, 31)
+                .addComponent(inputCLabel)
+                .addContainerGap(360, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,7 +163,9 @@ public class EditorForm extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(saveExitButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 447, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tilePropertiesPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(66, Short.MAX_VALUE)
@@ -99,11 +176,12 @@ public class EditorForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(705, Short.MAX_VALUE)
+                .addGap(0, 705, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
                     .addComponent(saveExitButton))
                 .addGap(19, 19, 19))
+            .addComponent(tilePropertiesPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(88, Short.MAX_VALUE)
@@ -232,6 +310,7 @@ public class EditorForm extends javax.swing.JFrame {
                 public void mouseClicked(MouseEvent e){
                     System.out.println("he clicat"+row+col);
                 }
+                /* si es fa servir peta per tot arreu. TODO: revisar
                 @Override
                 public void mouseEntered(MouseEvent e) {
                     setBackground(over);
@@ -240,7 +319,7 @@ public class EditorForm extends javax.swing.JFrame {
                 @Override
                 public void mouseExited(MouseEvent e) {
                     setBackground(def);
-                }
+                }*/
             });
         }
 
@@ -256,9 +335,18 @@ public class EditorForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel animationLabel;
+    private javax.swing.JLabel colliderLabel;
+    private javax.swing.JLabel heightLabel;
+    private javax.swing.JLabel idLabel;
     private javax.swing.JLabel imageLabel;
+    private javax.swing.JLabel inputCLabel;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JButton saveExitButton;
+    private javax.swing.JLabel sizeTileLabel;
+    private javax.swing.JPanel tilePropertiesPane;
+    private javax.swing.JLabel widthLabel;
     // End of variables declaration//GEN-END:variables
 }
