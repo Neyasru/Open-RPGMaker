@@ -13,11 +13,13 @@ import java.awt.GridBagLayout;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
+import tedi.Parser;
 
 /**
  *
@@ -26,13 +28,50 @@ import javax.swing.border.MatteBorder;
 public class EditorForm extends javax.swing.JFrame {
 
     private static EditorForm ef;
-    private static String luaPath;
+    private static String luaPath = "F://Ferran/SLDS/NewRPG/windows/MVS/ScriptRPG/assets/tiles/tilesp.lua";
     private static String imagePath = "F://Ferran/SLDS/NewRPG/windows/MVS/ScriptRPG/assets/images/tileset.png";
+    private static String imgName = "img_tileset";
     private static GridPane grid;
     private static Rectangle bounds;
     private static int width;
     private static int height;
+    private static Parser pars;
+    private Vector<Info> info;
     
+    public static class Info{
+        String name;
+        GraphicsComp gC;
+        TransformComp tC;
+        ColliderComp cC;        
+        
+        public class GraphicsComp{
+            String imageID;
+            int row,column,numAnim;
+            public GraphicsComp(){
+                imageID = "";
+                row = column = numAnim = 0;
+            }
+        };
+        public class TransformComp{
+            int w,h,x,y,scale;
+            public TransformComp(){
+                x=h=x=y=scale;
+            }
+        };
+        public class ColliderComp{
+            String type;
+            public ColliderComp(){
+                type = "";
+            }
+        };
+        public Info() {
+            name = "";
+            gC = new GraphicsComp();
+            tC = new TransformComp();
+            cC = new ColliderComp();
+        }
+                
+    };
     /**
      * Creates new form EditorForm
      */
@@ -58,10 +97,13 @@ public class EditorForm extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         sizeTileLabel = new javax.swing.JLabel();
         colliderLabel = new javax.swing.JLabel();
-        animationLabel = new javax.swing.JLabel();
         heightLabel = new javax.swing.JLabel();
         widthLabel = new javax.swing.JLabel();
-        inputCLabel = new javax.swing.JLabel();
+        idText = new javax.swing.JTextField();
+        nameTextField = new javax.swing.JTextField();
+        heightTextField = new javax.swing.JTextField();
+        widthTextField = new javax.swing.JTextField();
+        colliderComboBox = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,17 +141,32 @@ public class EditorForm extends javax.swing.JFrame {
         colliderLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         colliderLabel.setText("Collider");
 
-        animationLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        animationLabel.setText("Animation Number");
-
         heightLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         heightLabel.setText("Height");
 
         widthLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         widthLabel.setText("Width");
 
-        inputCLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        inputCLabel.setText("Input Component");
+        idText.setEditable(false);
+        idText.setText("-");
+
+        nameTextField.setText("-");
+        nameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameTextFieldActionPerformed(evt);
+            }
+        });
+
+        heightTextField.setText("32");
+
+        widthTextField.setText("32");
+
+        colliderComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None", "Solid" }));
+        colliderComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colliderComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tilePropertiesPaneLayout = new javax.swing.GroupLayout(tilePropertiesPane);
         tilePropertiesPane.setLayout(tilePropertiesPaneLayout);
@@ -118,39 +175,56 @@ public class EditorForm extends javax.swing.JFrame {
             .addGroup(tilePropertiesPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idLabel)
-                    .addComponent(nameLabel)
-                    .addComponent(colliderLabel)
-                    .addComponent(animationLabel)
-                    .addComponent(sizeTileLabel)
                     .addGroup(tilePropertiesPaneLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(nameLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(tilePropertiesPaneLayout.createSequentialGroup()
                             .addComponent(heightLabel)
-                            .addComponent(widthLabel)))
-                    .addComponent(inputCLabel))
-                .addContainerGap(119, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(heightTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
+                        .addGroup(tilePropertiesPaneLayout.createSequentialGroup()
+                            .addComponent(widthLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(widthTextField))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tilePropertiesPaneLayout.createSequentialGroup()
+                            .addComponent(idLabel)
+                            .addGap(18, 18, 18)
+                            .addComponent(idText))
+                        .addComponent(sizeTileLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addGroup(tilePropertiesPaneLayout.createSequentialGroup()
+                        .addComponent(colliderLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(colliderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         tilePropertiesPaneLayout.setVerticalGroup(
             tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tilePropertiesPaneLayout.createSequentialGroup()
                 .addGap(65, 65, 65)
-                .addComponent(idLabel)
-                .addGap(37, 37, 37)
-                .addComponent(nameLabel)
-                .addGap(35, 35, 35)
+                .addGroup(tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idLabel)
+                    .addComponent(idText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameLabel)
+                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addComponent(sizeTileLabel)
                 .addGap(13, 13, 13)
-                .addComponent(heightLabel)
+                .addGroup(tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(heightLabel)
+                    .addComponent(heightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(widthLabel)
+                .addGroup(tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(widthLabel)
+                    .addComponent(widthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(colliderLabel)
-                .addGap(34, 34, 34)
-                .addComponent(animationLabel)
-                .addGap(31, 31, 31)
-                .addComponent(inputCLabel)
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addGroup(tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(colliderLabel)
+                    .addComponent(colliderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(450, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,7 +236,7 @@ public class EditorForm extends javax.swing.JFrame {
                 .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(saveExitButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 447, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 484, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tilePropertiesPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -176,7 +250,7 @@ public class EditorForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 705, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
                     .addComponent(saveExitButton))
@@ -201,6 +275,14 @@ public class EditorForm extends javax.swing.JFrame {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void colliderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colliderComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_colliderComboBoxActionPerformed
+
+    private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,8 +328,8 @@ public class EditorForm extends javax.swing.JFrame {
     }
     
     public void initPresentation(String luaPath, String imgPath, int hght, int wdth) {
-        this.luaPath = luaPath;
-       // this.imagePath = imgPath;
+        //this.luaPath = luaPath;
+        //this.imagePath = imgPath;
         height = hght;
         width = wdth;
         bounds = imageLabel.getBounds();
@@ -257,15 +339,68 @@ public class EditorForm extends javax.swing.JFrame {
         this.add(grid);
         grid.setBounds(bounds);
         ef.setVisible(true);
+        pars = Parser.getInstance(this.luaPath);
+        pars.setFilename(this.luaPath);
+        info = newInfo();
+        pars.getParsedInfo(info,grid.C,grid.R);
+        changeInfo(0,0);
     }
+    
+    private Vector<Info> newInfo(){
+        Vector<Info> out = new Vector<Info>();
+        for (int i = 0; i < grid.R; i++){
+            for (int j = 0; j < grid.C; j++){
+                Info ninfo = new Info();
+                ninfo.gC.row = i;
+                ninfo.gC.column = j;
+                ninfo.gC.imageID = imgName;
+                ninfo.gC.numAnim = 0;
+                ninfo.tC.x = ninfo.tC.y = 0;
+                ninfo.tC.scale = 1;
+                ninfo.tC.w = width;
+                ninfo.tC.h = height;
+                ninfo.cC.type = "None";
+                out.add(ninfo);
+            }
+        }
+        return out;
+    }
+    
+    private void saveActual(){
+        int id = Integer.parseInt(idText.getText());
+        Info sinfo = info.get(id);
+        sinfo.name = nameTextField.getText();
+        sinfo.tC.w = Integer.parseInt(widthTextField.getText());
+        sinfo.tC.h = Integer.parseInt(heightTextField.getText());
+        sinfo.cC.type = String.valueOf(colliderComboBox.getSelectedItem());
+        info.set(id, sinfo);
+    }
+    
+    private void changeInfo(int r,int c){
+        int id = r * grid.R + c;
+        idText.setText(""+id);
+        Info ninfo = new Info();
+        ninfo = info.get(id);
+        nameTextField.setText(ninfo.name);
+        widthTextField.setText(""+ninfo.tC.w);
+        heightTextField.setText(""+ninfo.tC.h);
+        if(ninfo.cC.type == "Solid"){
+            colliderComboBox.setSelectedIndex(1);
+        }
+        else {
+            colliderComboBox.setSelectedIndex(0);
+        }
+    }
+    
     public class GridPane extends javax.swing.JLayeredPane {
-
+        public int R,C;
         public GridPane() {
             setLayout(new GridBagLayout());
             
             int numRow = bounds.width/width;
             int numCol = bounds.height/height;
-
+            R = numRow;
+            C = numCol;
             GridBagConstraints gbc = new GridBagConstraints();
             for (int row = 0; row < numRow; row++) {
                 for (int col = 0; col < numCol; col++) {
@@ -308,7 +443,9 @@ public class EditorForm extends javax.swing.JFrame {
             addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e){
+                    saveActual();
                     System.out.println("he clicat"+row+col);
+                    changeInfo(row,col);
                 }
                 /* si es fa servir peta per tot arreu. TODO: revisar
                 @Override
@@ -335,18 +472,21 @@ public class EditorForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel animationLabel;
+    private javax.swing.JComboBox colliderComboBox;
     private javax.swing.JLabel colliderLabel;
     private javax.swing.JLabel heightLabel;
+    private javax.swing.JTextField heightTextField;
     private javax.swing.JLabel idLabel;
+    private javax.swing.JTextField idText;
     private javax.swing.JLabel imageLabel;
-    private javax.swing.JLabel inputCLabel;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField nameTextField;
     private javax.swing.JButton saveButton;
     private javax.swing.JButton saveExitButton;
     private javax.swing.JLabel sizeTileLabel;
     private javax.swing.JPanel tilePropertiesPane;
     private javax.swing.JLabel widthLabel;
+    private javax.swing.JTextField widthTextField;
     // End of variables declaration//GEN-END:variables
 }
