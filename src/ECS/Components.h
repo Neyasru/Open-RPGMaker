@@ -6,5 +6,6 @@
 #include "GraphicsComponent.h"
 #include "InputComponent.h"
 #include "NpcComponent.h"
+#include "EquipmentComponent.h"
 
 #endif

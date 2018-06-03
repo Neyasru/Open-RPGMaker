@@ -59,7 +59,8 @@ std::vector<std::string> getTableKeys(luabridge::lua_State* L, const std::string
 		lua_pushnil(L);
 
 		while (lua_next(L, -2)) { // get values one by one
-			if (lua_type(L, -1) == LUA_TSTRING) { // check if key is a string
+			auto val = lua_type(L, -1);
+			if (val == LUA_TSTRING) { // check if key is a string
 				keys.push_back(luabridge::lua_tostring(L, -1));
 			}
 			luabridge::lua_pop(L, 1);

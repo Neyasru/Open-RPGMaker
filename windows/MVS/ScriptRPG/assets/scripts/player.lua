@@ -19,6 +19,14 @@ player = {
 		scale = 1;
 		speed = 0.1;
 	},
+	EquipmentComponent = {
+		helmet = "plate_head";
+		armor = "plate_armor";
+		legs = "plate_legs";
+		glooves = "plate_hands";
+		shoes = "plate_feets";
+	},
+	
 }
 
 function loadAnimations(entity)
@@ -31,6 +39,5 @@ function loadAnimations(entity)
 	entity:setAnimation("WALKING-REAR" , 0, 0, 1, 8, 100);
 	entity:setAnimation("WALKING-LEFT", 0, 1, 1, 8, 100);
 	entity:setAnimation("WALKING-FRONT", 0, 2, 1, 8, 100);
-	entity:setAnimation("WALKING-RIGHT" , 0, 3, 1, 8, 100);
-	
+	entity:setAnimation("WALKING-RIGHT" , 0, 3, 1, 8, 100);	
 end

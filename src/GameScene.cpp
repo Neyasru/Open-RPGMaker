@@ -4,6 +4,7 @@
 #include "GameScene.h"
 #include "Engine.h"
 #include "Map.h"
+#include "Equipment.h"
 #include "ECS/Components.h"
 
 using namespace std;
@@ -14,6 +15,7 @@ GameScene::GameScene(Engine* engine) : Scene(engine) {
 
 	entityManager = new EntityManager();
 	mapManager = new MapManager(entityManager);
+	equipmentManager = new EquipmentManager(entityManager);
 
 }
 
@@ -27,16 +29,20 @@ void GameScene::restart(void) {
 	loadLuaFunctions(L);
 	loadGetKeysFunction(L);
 	
+	if (loadScript(L, "assets/scripts/equipment.lua")) {
+		equipmentManager->loadEquipments(L);
+	}
+
 	if(loadScript(L, "assets/scripts/player.lua")){
 		player = &(entityManager->addEntity(L, "player"));
 		
 		luabridge::LuaRef loadAnimations = getGlobal(L, "loadAnimations");
 		loadAnimations(LuaEntityHandle(player));
-
+		player->get<EquipmentComponent>()->setEquipmentManager(equipmentManager);
 		player->addGroup(groupPlayers);
 	}
 	
-	if(loadScript(L, "assets/tiles/tiles.lua")){
+	if(loadScript(L, "assets/scripts/tiles.lua")){
 		mapManager->loadTileReferences(L);
 	}
 
@@ -73,6 +79,9 @@ void GameScene::render(void)  {
 	for (auto& p : entityManager->getGroup(groupPlayers))
 	{
 		p->draw();
+		if (p->get<EquipmentComponent>() != NULL) {
+			p->get<EquipmentComponent>()->draw();
+		}
 	}
 
 

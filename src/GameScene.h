@@ -8,6 +8,7 @@ class Engine;
 class EntityManager;
 class Entity;
 class MapManager;
+class EquipmentManager;
 
 class GameScene : public Scene {
 
@@ -35,7 +36,9 @@ private:
 	float currentTime;
 	EntityManager* entityManager;
 	MapManager* mapManager;
+	EquipmentManager* equipmentManager;
 	
 	InputManager* input;
 	Entity* player;
+	Entity* equipments;
 };

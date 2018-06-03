@@ -95,9 +95,9 @@ public:
 	void init() override {
 		transform = e->get<TransformComponent>();
 		srcRect.x = srcRect.y = 0;
+		setTex(imageID);
 		srcRect.w = transform->width;
 		srcRect.h = transform->heigth;
-		setTex(imageID);
 	}
 	
 	void update() override {

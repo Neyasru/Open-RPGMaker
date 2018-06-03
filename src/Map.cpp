@@ -63,7 +63,7 @@ void Map::loadMap(std::string file){
 		luabridge::luaL_openlibs(L);
 		loadLuaFunctions(L);
 		loadGetKeysFunction(L);
-		if (loadScript(L, "assets/tiles/tiles.lua")) {
+		if (loadScript(L, "assets/scripts/tiles.lua")) {
 			for(int z = 0; z < layers; z++){
 				Layer aux_Layer;
 				for (int y = 0; y < sizeY; y++){

@@ -128,6 +128,7 @@
     <ClCompile Include="..\..\..\src\AssetsManager.cpp" />
     <ClCompile Include="..\..\..\src\ECS\ECS.cpp" />
     <ClCompile Include="..\..\..\src\Engine.cpp" />
+    <ClCompile Include="..\..\..\src\Equipment.cpp" />
     <ClCompile Include="..\..\..\src\GameScene.cpp" />
     <ClCompile Include="..\..\..\src\InputManager.cpp" />
     <ClCompile Include="..\..\..\src\LuaHelperFunctions.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="..\..\..\src\ECS\ColliderComponent.h" />
     <ClInclude Include="..\..\..\src\ECS\Components.h" />
     <ClInclude Include="..\..\..\src\ECS\ECS.h" />
+    <ClInclude Include="..\..\..\src\ECS\EquipmentComponent.h" />
     <ClInclude Include="..\..\..\src\ECS\GraphicsComponent.h" />
     <ClInclude Include="..\..\..\src\ECS\InputComponent.h" />
     <ClInclude Include="..\..\..\src\ECS\MapComponent.h" />
@@ -152,6 +154,7 @@
     <ClInclude Include="..\..\..\src\ECS\TileComponent.h" />
     <ClInclude Include="..\..\..\src\ECS\TransformComponent.h" />
     <ClInclude Include="..\..\..\src\Engine.h" />
+    <ClInclude Include="..\..\..\src\Equipment.h" />
     <ClInclude Include="..\..\..\src\GameObjectFactory.h" />
     <ClInclude Include="..\..\..\src\GameScene.h" />
     <ClInclude Include="..\..\..\src\InputManager.h" />
