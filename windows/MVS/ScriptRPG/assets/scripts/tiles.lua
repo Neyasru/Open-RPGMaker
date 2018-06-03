@@ -345,6 +345,7 @@ grass_to_sea_l = {
 		h = 32;
 		x = 0;
 		y = 0;
+		scale = 1;
 	},
 	ColliderComponent = {
 		type = "Solid";
