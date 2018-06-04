@@ -7,5 +7,6 @@
 #include "InputComponent.h"
 #include "NpcComponent.h"
 #include "EquipmentComponent.h"
+#include "ColliderComponent.h"
 
 #endif

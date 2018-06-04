@@ -2,44 +2,68 @@
 #define _COLLIDERCOMPONENT_H_
 
 #include "ECS.h"
+#include "../Engine.h"
 
-class ColliderComponent : public Component{
+class ColliderComponent : public Component {
 private:
 	TransformComponent * transform;
 	std::string type;
-	SDL_Rect colliderRect;	
-	
-	
+	SDL_Rect colliderRect;
+
+	bool check = false;
+
 public:
+	void collided() {
+		transform->collisionUpdate();
+	}
+
 	ColliderComponent(luabridge::LuaRef& ColliderTable) {
 		using namespace luabridge;
 		auto typeRef = ColliderTable["type"];
+		auto checkRef = ColliderTable["check"];
 		auto rectRef = ColliderTable["rect"];
-		
+
 		if (typeRef.isString()) {
 			type = typeRef.cast<std::string>();
 		}
 		else {
 			std::cout << "Error, ColliderComponent.type is not a string!" << std::endl;
 		}
+
+		if (checkRef.isString()) {
+			std::string checkStr = checkRef.cast<std::string>();
+			if (checkStr == "True" || checkRef == "true") {
+				check = true;
+				Engine::instance().colliderscheckers.push_back(this);
+			}
+		}
+
+		Engine::instance().colliders.push_back(this);
+
 	}
 
 	~ColliderComponent() {}
-	
+
 	void init() override {
 		transform = e->get<TransformComponent>();
+		colliderRect.x = transform->position.x*transform->width*transform->scale;
+		colliderRect.y = transform->position.y*transform->heigth*transform->scale;
+		colliderRect.h = transform->heigth*transform->scale;
+		colliderRect.w = transform->width*transform->scale;
 	}
-	
+
 	void update() override {
-		colliderRect.x  = transform->position.x;
-		colliderRect.x  = transform->position.y;
+		colliderRect.x = transform->position.x*transform->width*transform->scale;
+		colliderRect.y = transform->position.y*transform->heigth*transform->scale;
+		colliderRect.h = transform->heigth*transform->scale;
+		colliderRect.w = transform->width*transform->scale;
 	}
 
 	void draw() override {
-		
+
 	}
-	
-	bool checkCollision(SDL_Rect a, SDL_Rect b){
+
+	bool checkCollision(SDL_Rect a, SDL_Rect b) {
 		//The sides of the rectangles
 		int leftA, leftB;
 		int rightA, rightB;
@@ -57,24 +81,24 @@ public:
 		rightB = b.x + b.w;
 		topB = b.y;
 		bottomB = b.y + b.h;
-		
+
 		//If any of the sides from A are outside of B
-		if( bottomA <= topB )
+		if (bottomA < topB)
 		{
 			return false;
 		}
 
-		if( topA >= bottomB )
+		if (bottomB < topA)
 		{
 			return false;
 		}
 
-		if( rightA <= leftB )
+		if (rightA <= leftB)
 		{
 			return false;
 		}
 
-		if( leftA >= rightB )
+		if (leftA >= rightB)
 		{
 			return false;
 		}
@@ -82,26 +106,26 @@ public:
 		//If none of the sides from A are outside B
 		return true;
 	}
-	
-	void setRect(float x, float y, float w, float h){
+
+	void setRect(float x, float y, float w, float h) {
 		colliderRect.x = x;
 		colliderRect.y = y;
 		colliderRect.w = w;
 		colliderRect.h = h;
 	}
-	
-	SDL_Rect getRect(){
+
+	SDL_Rect getRect() {
 		return colliderRect;
 	}
-	
-	void setType(std::string type){
+
+	void setType(std::string type) {
 		this->type = type;
 	}
-	
-	std::string getType(){
+
+	std::string getType() {
 		return type;
 	}
-	
+
 };
 
 #endif

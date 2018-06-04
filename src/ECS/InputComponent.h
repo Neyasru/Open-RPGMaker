@@ -15,6 +15,7 @@ public:
 	TransformComponent* transform;
 	GraphicsComponent* graphics;
 	EquipmentComponent* equip;
+	ColliderComponent* collider;
 
 	bool input; //1 = take input from keyboard/mouse,0 = demo/IA mode
 
@@ -34,6 +35,7 @@ public:
 		graphics = e->get<GraphicsComponent>();
 		transform = e->get<TransformComponent>();
 		equip = e->get<EquipmentComponent>();
+		collider = e->get<ColliderComponent>();
 	}
 
 	void update() override {

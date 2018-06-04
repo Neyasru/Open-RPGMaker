@@ -10,6 +10,8 @@
 class TransformComponent : public Component{
 public:
 	Vector2D position;
+	Vector2D safe_position;
+	Vector2D previous_position;
 	Vector2D velocity;
 
 	int heigth = 32;
@@ -112,6 +114,8 @@ public:
 	}
 
 	void update() override {
+		safe_position = previous_position;
+		previous_position = position;
 		if (velocity.x != 0 && velocity.y == 0)
 			position.x += static_cast<float>(velocity.x * speed);
 		if (velocity.x == 0 && velocity.y != 0)
@@ -122,6 +126,9 @@ public:
 		}
 	}
 
+	void collisionUpdate() {
+		position = safe_position;
+	}
 	~TransformComponent() {}
 };
 

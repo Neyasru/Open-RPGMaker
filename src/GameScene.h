@@ -37,7 +37,7 @@ private:
 	EntityManager* entityManager;
 	MapManager* mapManager;
 	EquipmentManager* equipmentManager;
-	
+
 	InputManager* input;
 	Entity* player;
 	Entity* equipments;

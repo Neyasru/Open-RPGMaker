@@ -35,6 +35,10 @@ Entity& EntityManager::addEntity(luabridge::lua_State* L, const std::string& typ
 			luabridge::LuaRef equipTable = entityTable["EquipmentComponent"];
 			addComponent<EquipmentComponent>(e, equipTable);
 		}
+		else if (componentName == "ColliderComponent") {
+			luabridge::LuaRef colliderTable = entityTable["ColliderComponent"];
+			addComponent<ColliderComponent>(e, colliderTable);
+		}
 
 		//std::cout << "Added " << componentName << " to " << type << std::endl;
 	}

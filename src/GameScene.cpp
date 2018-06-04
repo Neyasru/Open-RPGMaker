@@ -65,6 +65,24 @@ void GameScene::update(void) {
 	SDL_GetWindowSize(Engine::instance().getWindow(), &w, &h);
 	Engine::instance().camera.x = static_cast<int>(player->get<TransformComponent>()->position.x*player->get<TransformComponent>()->width*player->get<TransformComponent>()->scale-w / 2 + player->get<TransformComponent>()->width / 2);
 	Engine::instance().camera.y = static_cast<int>(player->get<TransformComponent>()->position.y*player->get<TransformComponent>()->heigth*player->get<TransformComponent>()->scale-h / 2 + player->get<TransformComponent>()->heigth / 2);
+	
+	int numColliders = Engine::instance().colliderscheckers.size();
+	for(int i = 0; i < numColliders; i++) {
+		int numTotalColliders = Engine::instance().colliders.size();
+		ColliderComponent* checker = Engine::instance().colliderscheckers[i];
+		for (int j = 0; j < numTotalColliders; j++) {
+			ColliderComponent* checked = Engine::instance().colliders[j];
+			if (checker != checked) {
+				bool collision = checker->checkCollision(checker->getRect(),checked->getRect());
+				if (collision && checker->getType() != "None" &&  checked->getType() != "None") {
+					//std::cout << "Collision i:" << i << " j:" << j << std::endl;
+					checker->collided();
+					
+				}
+			}
+		}
+	}
+
 	entityManager->update();
 	
 	if (Engine::instance().input.getPressedKey('l')) {

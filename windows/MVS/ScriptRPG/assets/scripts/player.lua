@@ -11,6 +11,10 @@ player = {
     NpcComponent = {
         phrase = "Soc un player super molon"
     },
+	ColliderComponent = {
+		type = "Solid";
+		check = "True";
+    },
 	TransformComponent = {
 		x = 25;
 		y = 23;
