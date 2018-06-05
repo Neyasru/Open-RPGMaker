@@ -30,7 +30,7 @@ public class Parser {
     private String tabx2 = "        ";
     private String endl = "\n";
     private String semiendl = ";\n";
-    private String claudatorcolo = "},";
+    private String claudatorcolo = "},\n";
     private String claudatorendl = "}\n";
     private String openclaudator = "{\n";
     private String claudatorEOF = "}";
@@ -218,16 +218,43 @@ public class Parser {
         for (int i = 0; i < info.size(); i ++){
             records.add(tab+strgMap.get(i)+" = "+i+semiendl);
         }
-        records.add(claudatorEOF);
+        records.add(claudatorendl);
         //2a cada element de info
+        for (int j = 0; j < info.size(); j++){
+            Info ninf = info.get(j);
+            records.add(ninf.name+" = "+openclaudator);
+            //GRAPHIC COMPONENT
+            records.add(tab+"GraphicsComponent = "+openclaudator);
+            records.add(tabx2+"imageID = "+ninf.gC.imageID+semiendl);
+            records.add(tabx2+"row = "+ninf.gC.row+semiendl);
+            records.add(tabx2+"column = "+ninf.gC.column+semiendl);
+            records.add(tabx2+"numAnim = "+ninf.gC.numAnim+semiendl);
+            records.add(tab+claudatorcolo);   
+            
+            //TRANSFORM COMPONENT
+            records.add(tab+"TransformComponent = "+openclaudator);
+            records.add(tabx2+"w = "+ninf.tC.w+semiendl);
+            records.add(tabx2+"h = "+ninf.tC.h+semiendl);
+            records.add(tabx2+"x = "+ninf.tC.x+semiendl);
+            records.add(tabx2+"y = "+ninf.tC.y+semiendl);
+            records.add(tabx2+"scale = "+ninf.tC.scale+semiendl);
+            records.add(tab+claudatorcolo);
+            
+            //COLLIDER COMPONENT
+            records.add(tab+"ColliderComponent = "+openclaudator);
+            records.add(tabx2+"type = "+ninf.cC.type+semiendl);
+            records.add(tab+claudatorcolo);
+            
+            records.add(claudatorendl);
+        }
         
-        
-        
+        records.remove(records.size()-1);
+        records.add(claudatorEOF);
         
         //escriptura
         try
         {
-          BufferedWriter writer = new BufferedWriter(new FileWriter("F://Ferran/SLDS/NewRPG/windows/MVS/ScriptRPG/assets/tiles/tilesp2.lua"));
+          BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
           String line;
           
           for (int j = 0; j < records.size(); ++j){

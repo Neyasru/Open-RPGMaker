@@ -28,9 +28,9 @@ import tedi.Parser;
 public class EditorForm extends javax.swing.JFrame {
 
     private static EditorForm ef;
-    private static String luaPath = "F://Ferran/SLDS/NewRPG/windows/MVS/ScriptRPG/assets/tiles/tilesp.lua";
-    private static String imagePath = "F://Ferran/SLDS/NewRPG/windows/MVS/ScriptRPG/assets/images/tileset.png";
-    private static String imgName = "img_tileset";
+    private static String luaPath;
+    private static String imagePath;
+    private static String imgName = "\"img_tileset\"";
     private static GridPane grid;
     private static Rectangle bounds;
     private static int width;
@@ -104,6 +104,8 @@ public class EditorForm extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         sizeTileLabel = new javax.swing.JLabel();
         colliderLabel = new javax.swing.JLabel();
+        imageIDLabel = new javax.swing.JLabel();
+        imageIDTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,7 +139,7 @@ public class EditorForm extends javax.swing.JFrame {
         );
         tilePropertiesPaneLayout.setVerticalGroup(
             tilePropertiesPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 362, Short.MAX_VALUE)
+            .addGap(0, 359, Short.MAX_VALUE)
         );
 
         heightLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -179,6 +181,16 @@ public class EditorForm extends javax.swing.JFrame {
         colliderLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         colliderLabel.setText("Collider");
 
+        imageIDLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        imageIDLabel.setText("imageID");
+
+        imageIDTextField.setText("-");
+        imageIDTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imageIDTextFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,18 +202,13 @@ public class EditorForm extends javax.swing.JFrame {
                 .addComponent(saveExitButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 461, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(tilePropertiesPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(nameLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nameTextField)
-                                .addContainerGap())
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(heightLabel)
@@ -219,7 +226,15 @@ public class EditorForm extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(colliderLabel)
                                 .addGap(18, 18, 18)
-                                .addComponent(colliderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(colliderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(imageIDLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(imageIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(66, Short.MAX_VALUE)
@@ -236,15 +251,19 @@ public class EditorForm extends javax.swing.JFrame {
                     .addComponent(saveExitButton))
                 .addGap(19, 19, 19))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(147, 147, 147)
+                .addGap(131, 131, 131)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idLabel)
                     .addComponent(idText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imageIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imageIDLabel))
+                .addGap(29, 29, 29)
                 .addComponent(sizeTileLabel)
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -291,6 +310,10 @@ public class EditorForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameTextFieldActionPerformed
 
+    private void imageIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageIDTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imageIDTextFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -335,8 +358,8 @@ public class EditorForm extends javax.swing.JFrame {
     }
     
     public void initPresentation(String luaPath, String imgPath, int hght, int wdth) {
-        //this.luaPath = luaPath;
-        //this.imagePath = imgPath;
+        this.luaPath = luaPath;
+        this.imagePath = imgPath;
         height = hght;
         width = wdth;
         bounds = imageLabel.getBounds();
@@ -376,6 +399,7 @@ public class EditorForm extends javax.swing.JFrame {
         int id = Integer.parseInt(idText.getText());
         Info sinfo = info.get(id);
         sinfo.name = nameTextField.getText();
+        sinfo.gC.imageID = imageIDTextField.getText();
         sinfo.tC.w = Integer.parseInt(widthTextField.getText());
         sinfo.tC.h = Integer.parseInt(heightTextField.getText());
         sinfo.cC.type = String.valueOf(colliderComboBox.getSelectedItem());
@@ -392,6 +416,7 @@ public class EditorForm extends javax.swing.JFrame {
         nameTextField.setText(ninfo.name);
         widthTextField.setText(""+ninfo.tC.w);
         heightTextField.setText(""+ninfo.tC.h);
+        imageIDTextField.setText(""+ninfo.gC.imageID);
         if(ninfo.cC.type == "Solid"){
             colliderComboBox.setSelectedIndex(1);
         }
@@ -486,6 +511,8 @@ public class EditorForm extends javax.swing.JFrame {
     private javax.swing.JTextField heightTextField;
     private javax.swing.JLabel idLabel;
     private javax.swing.JTextField idText;
+    private javax.swing.JLabel imageIDLabel;
+    private javax.swing.JTextField imageIDTextField;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel nameLabel;

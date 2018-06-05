@@ -148,7 +148,7 @@ public class LoadForm extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(luaFileSelector))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
+                        .addGap(188, 188, 188)
                         .addComponent(tileSizeLable, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tileHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,7 +188,6 @@ public class LoadForm extends javax.swing.JFrame {
         );
 
         tileHeight.getAccessibleContext().setAccessibleName("HEIGHT");
-        tileHeight.getAccessibleContext().setAccessibleDescription("HEIGHT");
         tileWidth.getAccessibleContext().setAccessibleName("WIDTH");
 
         pack();
