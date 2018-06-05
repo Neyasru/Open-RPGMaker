@@ -9,9 +9,11 @@ import UI.EditorForm;
 import UI.EditorForm.Info;
 import java.awt.List;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.util.Vector;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +26,15 @@ public class Parser {
     private static Parser par;
     private Map<String, Integer> idexMap;
     private Map<Integer, String> strgMap;
- 
+    private String tab = "    ";
+    private String tabx2 = "        ";
+    private String endl = "\n";
+    private String semiendl = ";\n";
+    private String claudatorcolo = "},";
+    private String claudatorendl = "}\n";
+    private String openclaudator = "{\n";
+    private String claudatorEOF = "}";
+    
     public Parser (){
         filename = "";
     }
@@ -162,7 +172,14 @@ public class Parser {
             }
             
             ++i;
-        }       
+        }
+        for (int j = 0; j < info.size(); j ++){
+            if (strgMap.get(j) != null){
+                Info ninfo = info.get(j);
+                ninfo.name = strgMap.get(j);
+                info.set(j, ninfo);
+            }
+        }
     }
     
     void printDebug( ArrayList<String> records){
@@ -182,7 +199,52 @@ public class Parser {
         return par;
     }
     
+    public void changeNames(int id,String name){
+        System.out.println("ID "+id);
+        System.out.println("NAME "+name);
+        String oname = strgMap.get(id);
+        System.out.println(oname);
+        strgMap.remove(id);
+        strgMap.put(id, name);
+        idexMap.remove(oname);
+        idexMap.put(name, id);
+    }
+    
     public void save(Vector<Info> info) {
-        System.out.println(info.get(0).name);
+        //2 parts
+        //Diccionari
+        ArrayList<String> records = new ArrayList<String>();
+        records.add("tiles = "+openclaudator);
+        for (int i = 0; i < info.size(); i ++){
+            records.add(tab+strgMap.get(i)+" = "+i+semiendl);
+        }
+        records.add(claudatorEOF);
+        //2a cada element de info
+        
+        
+        
+        
+        //escriptura
+        try
+        {
+          BufferedWriter writer = new BufferedWriter(new FileWriter("F://Ferran/SLDS/NewRPG/windows/MVS/ScriptRPG/assets/tiles/tilesp2.lua"));
+          String line;
+          
+          for (int j = 0; j < records.size(); ++j){
+              writer.write(records.get(j));
+          }
+          writer.close();
+        }
+        catch (Exception e)
+        {
+          File f = new File(filename);
+         try{
+            f.createNewFile();
+         }
+         catch(Exception e1){
+            System.err.format("Exception occurred trying to read '%s'.", filename);
+            e.printStackTrace();
+         }
+        }
     }
 }
