@@ -36,30 +36,30 @@ public class EditorForm extends javax.swing.JFrame {
     private static int width;
     private static int height;
     private static Parser pars;
-    private Vector<Info> info;
+    public Vector<Info> info;
     
     public static class Info{
-        String name;
-        GraphicsComp gC;
-        TransformComp tC;
-        ColliderComp cC;        
+        public String name;
+        public GraphicsComp gC;
+        public TransformComp tC;
+        public ColliderComp cC;        
         
         public class GraphicsComp{
-            String imageID;
-            int row,column,numAnim;
+            public String imageID;
+            public int row,column,numAnim;
             public GraphicsComp(){
                 imageID = "";
                 row = column = numAnim = 0;
             }
         };
         public class TransformComp{
-            int w,h,x,y,scale;
+            public int w,h,x,y,scale;
             public TransformComp(){
                 x=h=x=y=scale;
             }
         };
         public class ColliderComp{
-            String type;
+            public String type;
             public ColliderComp(){
                 type = "";
             }
@@ -268,12 +268,15 @@ public class EditorForm extends javax.swing.JFrame {
 
     private void saveExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveExitButtonActionPerformed
         // TODO add your handling code here:
-        
+        saveActual();
+        pars.save(info);
         System.exit(0);
     }//GEN-LAST:event_saveExitButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
+        saveActual();
+        pars.save(info);
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void colliderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colliderComboBoxActionPerformed
@@ -339,10 +342,8 @@ public class EditorForm extends javax.swing.JFrame {
         this.add(grid);
         grid.setBounds(bounds);
         ef.setVisible(true);
-        pars = Parser.getInstance(this.luaPath);
-        pars.setFilename(this.luaPath);
         info = newInfo();
-        pars.getParsedInfo(info,grid.C,grid.R);
+        pars = Parser.getInstance(this.luaPath,info,grid.C,grid.R);
         changeInfo(0,0);
     }
     
@@ -367,6 +368,7 @@ public class EditorForm extends javax.swing.JFrame {
     }
     
     private void saveActual(){
+        System.out.println("clicao");
         int id = Integer.parseInt(idText.getText());
         Info sinfo = info.get(id);
         sinfo.name = nameTextField.getText();
@@ -381,6 +383,7 @@ public class EditorForm extends javax.swing.JFrame {
         idText.setText(""+id);
         Info ninfo = new Info();
         ninfo = info.get(id);
+        System.out.println(ninfo.name);
         nameTextField.setText(ninfo.name);
         widthTextField.setText(""+ninfo.tC.w);
         heightTextField.setText(""+ninfo.tC.h);
